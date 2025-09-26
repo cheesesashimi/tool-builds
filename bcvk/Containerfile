@@ -1,0 +1,15 @@
+FROM quay.io/fedora/fedora:42 AS builder
+WORKDIR /bcvk
+RUN --mount=type=cache,target=/var/cache/dnf \
+  dnf install --setopt=keepcache=True -y \
+	cargo \
+	git \
+	go-md2man \
+	just \
+	make \
+	openssl-devel && \
+  git clone https://github.com/bootc-dev/bcvk . && \
+  just build
+
+FROM quay.io/fedora/fedora:42 AS final
+COPY --from=builder /bcvk/target/release/bcvk /usr/local/bin/bcvk
