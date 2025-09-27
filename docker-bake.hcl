@@ -25,7 +25,7 @@ target "bcvk" {
 target "epel" {
   dockerfile = "Containerfile"
   context = "./epel"
-  tags = ["quay.io/zzlotnik/testing:epel"]
+  tags = ["quay.io/zzlotnik/devex:epel"]
 }
 
 group "default" {
