@@ -8,6 +8,7 @@ repos=(
   "coreos/butane"
   "derailed/k9s"
   "ericchiang/pup"
+  "getantibody/antibody"
   "gmeghnag/omc"
   "golangci/golangci-lint"
   "hairyhenderson/gomplate"
