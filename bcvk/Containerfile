@@ -11,5 +11,5 @@ RUN --mount=type=cache,target=/var/cache/dnf \
   git clone https://github.com/bootc-dev/bcvk . && \
   just build
 
-FROM quay.io/fedora/fedora:42 AS final
+FROM scratch AS final
 COPY --from=builder /bcvk/target/release/bcvk /usr/local/bin/bcvk

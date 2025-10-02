@@ -6,7 +6,8 @@ ENV GOMODCACHE="/go/pkg/mod"
 RUN --mount=type=cache,target=/go/.cache \
     --mount=type=cache,target=/go/pkg/mod \
     git clone --depth=1 https://github.com/openshift/machine-config-operator.git . && \
-    make -j install-helpers DESTDIR=/out
+    CGO_ENABLED=0 make -j install-helpers DESTDIR=/out && \
+    mv /out/usr/bin/* /usr/local/bin/
 
-FROM quay.io/fedora/fedora:42 AS final
-COPY --from=builder /out /mco
+FROM scratch AS final
+COPY --from=builder /usr/local/bin /usr/local/bin
