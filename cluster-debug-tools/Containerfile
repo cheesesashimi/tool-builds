@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:latest AS builder
+FROM quay.io/hummingbird/go:latest AS builder
 ENV GOCACHE="/go/.cache"
 ENV GOMODCACHE="/go/pkg/mod"
 WORKDIR /cluster-debug-tools

@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:latest AS builder
+FROM quay.io/hummingbird/go:latest AS builder
 WORKDIR /out
 WORKDIR /mco
 ENV GOCACHE="/go/.cache"
@@ -6,7 +6,7 @@ ENV GOMODCACHE="/go/pkg/mod"
 RUN --mount=type=cache,target=/go/.cache \
     --mount=type=cache,target=/go/pkg/mod \
     git clone --depth=1 https://github.com/openshift/machine-config-operator.git . && \
-    CGO_ENABLED=0 make -j install-helpers DESTDIR=/out && \
+    CGO_ENABLED=0 make install-helpers DESTDIR=/out && \
     mv /out/usr/bin/* /usr/local/bin/
 
 FROM scratch AS final

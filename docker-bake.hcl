@@ -11,5 +11,5 @@ target "cluster-debug-tools" {
 }
 
 group "default" {
-  targets = ["zacks-devex-helpers", "bcvk", "cluster-debug-tools"]
+  targets = ["zacks-devex-helpers", "cluster-debug-tools"]
 }
